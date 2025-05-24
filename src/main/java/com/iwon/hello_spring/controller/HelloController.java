@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloController {
 
+    // index.html 에서 호출하는 값과 동일
     @GetMapping("hello")
     public String hello(Model model) {
         // 모델 객체에 data:hello!! 추가하기
