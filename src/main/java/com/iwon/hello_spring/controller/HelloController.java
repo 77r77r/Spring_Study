@@ -9,6 +9,7 @@ public class HelloController {
 
     @GetMapping("hello")
     public String hello(Model model) {
+        // 모델 객체에 data:hello!! 추가하기
         model.addAttribute("data", "hello!!");
         return "hello"; // src/main/resources/templates/hello.html
         // return "ViewName"; -> resources:templates/ +{ViewName}+ .html
