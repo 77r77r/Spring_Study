@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HelloController {
 
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
+
     // index.html 에서 호출하는 값과 동일
     @GetMapping("hello")
     public String hello(Model model) {
