@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- 타임리프(Thymeleaf) 템플릿 기능
+  서버 없이 동작시 <p> </p> 사이의 메시지 출력 : 서버 없이 볼때
+  서버를 통해 엔진 동작시 th:text=" " 내용으로 치환됨
+-->
+<p th:text="'hello, ' + ${name}">서버없이 파일을 열었을 경우(절대경로) 확인 가능한 메시지</p>
+</body>
+</html>
