@@ -3,16 +3,20 @@ package com.iwon.hello_spring.service;
 import com.iwon.hello_spring.domain.Member;
 import com.iwon.hello_spring.repository.MemberRepository;
 import com.iwon.hello_spring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
+@Service
 public class MemberService {
 
     // 회원 리포지토리 필요
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         // 외부에서 넣어주도록 변경 : DI(Dependency Injection
         this.memberRepository = memberRepository;
