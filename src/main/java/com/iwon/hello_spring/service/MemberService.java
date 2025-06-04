@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-@Service
+//@Service
 public class MemberService {
 
     // 회원 리포지토리 필요
     private final MemberRepository memberRepository;
 
-    @Autowired
+    //@Autowired
     public MemberService(MemberRepository memberRepository) {
         // 외부에서 넣어주도록 변경 : DI(Dependency Injection
         this.memberRepository = memberRepository;

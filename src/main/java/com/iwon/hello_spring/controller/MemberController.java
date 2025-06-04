@@ -7,17 +7,25 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MemberController {
 
+    // 생성자 주입방식 : 요즘 추천하는 방식
     private final MemberService memberService;
-    // new로 생성하면 여러개의 인스턴스를 생성할 필요가 없으면 new 보다 스프링 컨테이너에 등록하고 사용하는 게 좋음.(하나 생성으로 공용사용) 스프링 컨테이너는 딱 하나만 등록이 됨. + 알파기능은 다음에
 
     @Autowired  // 스프링 컨테이너에 있는 객체와 연결을 시켜줌
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
+    /*
+    // 필드 주입방식
+    @Autowired private MemberService memberService;
 
+    // Setter 주입방식 : 누군가 멤버 컨트롤러를 호출 했을 때 public 으로 열려있어야함, 한 번 세팅되면 바꿀일이 없어서 public으로 노출할 이유가 없는데 강제로 노출되는 것, 호출하지 말아야할 메소드가 호출되면 안됨
+    private MemberService memberService;
 
-//    public MemberController(MemberService memberService) {
-//        this.memberService = memberService;
-//    }
+    @Autowired
+    public void setMemberService(MemberService memberService) {
+        this.memberService = memberService;
+    }
+    */
+
 }
