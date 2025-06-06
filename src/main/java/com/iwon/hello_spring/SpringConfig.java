@@ -1,7 +1,8 @@
-package com.iwon.hello_spring.service;
+package com.iwon.hello_spring;
 
 import com.iwon.hello_spring.repository.MemberRepository;
 import com.iwon.hello_spring.repository.MemoryMemberRepository;
+import com.iwon.hello_spring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
