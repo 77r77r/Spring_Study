@@ -69,8 +69,6 @@ class MemberServiceTest {
         // when
         memberService.join(member1);
         // '->' 이후 로직(memberService.join(member2))을 실행했을 때, 앞에 있는 예외(IllegalStateException)가 터져야 한다.
-        assertThrows(IllegalStateException.class, () -> memberService.join(member2));
-        // 검증 방법
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
 /*
