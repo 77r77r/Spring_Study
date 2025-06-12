@@ -5,12 +5,13 @@ import com.iwon.hello_spring.repository.MemberRepository;
 import com.iwon.hello_spring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-//@Service
+@Transactional
 public class MemberService {
 
     // 회원 리포지토리 필요
@@ -28,19 +29,7 @@ public class MemberService {
      */
     public Long join(Member member) {
 
-//        Optional<Member> result = memberRepository.findByName(member.getName());
-//        result.ifPresent(m -> {   //null이 아니라 값이 있으면 동작, if != null 과 동일한 로직
-//            throw new IllegalStateException("이미 존재하는 회원입니다.");
-//        });
-        //result.orElseGet(); // 사용. 값이 있으면 꺼내고 없으면 메서드 실행
-        // 위와 동일한 코드지만 한줄로 정리가능하지만 메서드로 뽑는 게 좋음
-//        memberRepository.findByName(member.getName())
-//                .ifPresent(m -> {
-//                    throw new IllegalStateException("이미 존재하는 회원입니다.");
-//                });
-
         validateDuplicateMember(member);    // 중복회원 검증
-
         memberRepository.save(member);
         return member.getId();
     }
