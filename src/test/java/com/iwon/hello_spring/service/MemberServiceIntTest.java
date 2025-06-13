@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -50,5 +52,14 @@ class MemberServiceIntTest {
         // then
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
+    }
+
+    @Test
+    public void 전체회원조회() {
+        List<Member> all_members = memberService.findMembers();
+        System.out.print("회원 목록 = ");
+        for (Member x : all_members) {
+            System.out.print(x.getName() + "(" + x.getId() + ") ");
+        }
     }
 }

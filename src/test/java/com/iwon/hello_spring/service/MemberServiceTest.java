@@ -51,8 +51,6 @@ class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         // then
-        // 저장한게 리포지토리에 맞아?
-
         Member findMember = memberService.findOne(saveId).get();
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
     }

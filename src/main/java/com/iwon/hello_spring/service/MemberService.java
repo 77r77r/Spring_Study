@@ -23,15 +23,23 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    /*
-     * 회원가입,
-     * 같은 이름이 있는 중복 회원X
-     */
+    // 회원가입, 같은 이름이 있는 중복 회원X
     public Long join(Member member) {
-
         validateDuplicateMember(member);    // 중복회원 검증
         memberRepository.save(member);
         return member.getId();
+
+        /* AOP 사용 전 시간측정 로직
+        long start = System.currentTimeMillis();
+        try {
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+        }*/
     }
 
     private void validateDuplicateMember(Member member) {
@@ -44,11 +52,29 @@ public class MemberService {
     // 전체회원 조회하기
     public List<Member> findMembers() {
         return memberRepository.findAll();
+
+        /* AOP 사용 전 시간측정 로직
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers = " + timeMs + "ms");
+        }*/
     }
 
     public Optional<Member> findOne(Long memberId) {
         return memberRepository.findById(memberId);
+
+        /* AOP 사용 전 시간측정 로직
+        long start = System.currentTimeMillis();
+        try {
+        return memberRepository.findById(memberId);
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findOne = " + timeMs + "ms");
+        }*/
     }
-
-
 }
