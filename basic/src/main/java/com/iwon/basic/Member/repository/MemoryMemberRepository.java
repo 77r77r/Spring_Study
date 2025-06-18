@@ -1,0 +1,21 @@
+package com.iwon.basic.Member.repository;
+
+import com.iwon.basic.Member.domain.Member;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class MemoryMemberRepository implements MemberRepository{
+
+    private static Map<Long, Member> store = new ConcurrentHashMap<>();
+
+    @Override
+    public void join(Member member) {
+        store.put(member.getId(), member);
+    }
+
+    @Override
+    public Member findById(Long memberId) {
+        return store.get(memberId);
+    }
+}
