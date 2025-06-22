@@ -1,15 +1,23 @@
 package com.iwon.basic.member;
 
+import com.iwon.basic.AppConfig;
 import com.iwon.basic.Member.domain.Grade;
 import com.iwon.basic.Member.domain.Member;
 import com.iwon.basic.Member.service.MemberService;
 import com.iwon.basic.Member.service.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join() {

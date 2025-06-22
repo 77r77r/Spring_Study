@@ -3,15 +3,25 @@ package com.iwon.basic.order.service;
 import com.iwon.basic.Member.domain.Member;
 import com.iwon.basic.Member.repository.MemberRepository;
 import com.iwon.basic.Member.repository.MemoryMemberRepository;
-import com.iwon.basic.discount.domain.DiscountPolicy;
-import com.iwon.basic.discount.domain.FixDiscountPolicy;
+import com.iwon.basic.discount.DiscountPolicy;
 import com.iwon.basic.order.domain.Order;
 
 public class OrderServiceImpl implements OrderService{
 
     // 회원 검색, 할인 정책 확인이 필요함
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    /**
+     * DIP, OCP 위반 : 인터페이스와 구현클래스를 둘다 호출하고 있기 때문이다. -> 인터페이스만 호출해야한다.
+     * private final MemberRepository memberRepository = new MemoryMemberRepository();
+     * private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+     * private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
+     */
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order cretaeOrder(Long memberId, String itemName, int itemPrice) {

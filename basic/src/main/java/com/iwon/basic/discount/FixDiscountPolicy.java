@@ -1,4 +1,4 @@
-package com.iwon.basic.discount.domain;
+package com.iwon.basic.discount;
 
 import com.iwon.basic.Member.domain.Grade;
 import com.iwon.basic.Member.domain.Member;

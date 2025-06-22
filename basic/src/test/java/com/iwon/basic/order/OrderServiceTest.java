@@ -1,5 +1,6 @@
 package com.iwon.basic.order;
 
+import com.iwon.basic.AppConfig;
 import com.iwon.basic.Member.domain.Grade;
 import com.iwon.basic.Member.domain.Member;
 import com.iwon.basic.Member.service.MemberService;
@@ -8,12 +9,20 @@ import com.iwon.basic.order.domain.Order;
 import com.iwon.basic.order.service.OrderService;
 import com.iwon.basic.order.service.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    MemberService memberService;
+    OrderService orderService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void 주문() {
