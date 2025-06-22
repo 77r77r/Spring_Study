@@ -1,5 +1,6 @@
 package com.iwon.basic;
 
+import com.iwon.basic.Member.repository.MemberRepository;
 import com.iwon.basic.Member.repository.MemoryMemberRepository;
 import com.iwon.basic.Member.service.MemberService;
 import com.iwon.basic.Member.service.MemberServiceImpl;
@@ -12,14 +13,19 @@ import com.iwon.basic.order.service.OrderServiceImpl;
 public class AppConfig {
 
     public MemberService memberService(){
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(MemberRepository());
+    }
+
+    private MemberRepository MemberRepository() {
+        return new MemoryMemberRepository();
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(MemberRepository(), discountPolicy());
     }
 
-    public RateDiscountPolicy discountPolicy() {
+    public DiscountPolicy discountPolicy() {
+//        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
 }

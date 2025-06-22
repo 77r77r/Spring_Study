@@ -23,7 +23,7 @@ public class OrderApp {
         Member member = new Member(memberId, "김브이", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderService.cretaeOrder(memberId, "포카칩", 1800);
+        Order order = orderService.cretaeOrder(memberId, "포카칩", 18000);
 
         System.out.println("order = " + order);
         System.out.println("order = " + order.calcPrice());
